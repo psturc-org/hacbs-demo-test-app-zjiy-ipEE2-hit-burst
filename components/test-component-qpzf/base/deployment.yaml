@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/instance: test-component-qpzf
     spec:
       containers:
-      - image: quay.io/psturc/test-images:8da5326945874e9e8f8304e92baa5972
+      - image: quay.io/psturc/test-images@sha256:eec4996746c6c9a6ee511dd554b3b2684938a23f28567638f11d6275ee6ec6c3
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
