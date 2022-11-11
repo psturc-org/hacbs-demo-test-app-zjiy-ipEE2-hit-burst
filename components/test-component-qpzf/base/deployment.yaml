@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-qpzf
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-qpzf
+    app.kubernetes.io/part-of: hacbs-demo-test-app-zjiy
+  name: test-component-qpzf
+  namespace: hacbs-e2e-iogp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: test-component-qpzf
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: test-component-qpzf
+    spec:
+      containers:
+      - image: quay.io/psturc/test-images:8da5326945874e9e8f8304e92baa5972
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        resources: {}
+status: {}
